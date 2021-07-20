@@ -1,9 +1,36 @@
 import { Button, Flex, Input, InputGroup, InputRightElement, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { Link } from "@chakra-ui/react";
+import { Logo } from "../components/Logo";
+
+type SignInFormData = {
+  email: string;
+  password: string;
+}
+
+const signInFormSchema = yup.object().shape({
+  email: yup.string().required('E-mail obrigatorio.').email('E-mail invalido'),
+  password: yup.string().required('Senha obrigatoria.'),
+})
 
 export default function Home() {
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
+
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(signInFormSchema)
+  })
+
+  const { errors } = formState
+
+  const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
+    console.log(values)
+  }
 
   return (
     
@@ -22,35 +49,19 @@ export default function Home() {
           p="8"
           borderRadius={8}
           flexDir="column"
+          onSubmit={handleSubmit(handleSignIn)}
         >
 
           <Stack spacing="4">
 
-            <Text
-              fontSize="34"
-              align="center"
-              fontFamily="Poppins"
-              color="yellow.500"
-
-            >
-              Yellow
-            </Text>
-
-            <Text
-              fontSize="16px"
-              color="purple.400"
-              mb="8"
-              align="center"
-              fontFamily="Patrick Hand"
-            >
-              Tecnology
-            </Text>
+           <Logo />
            
               <Input 
                 name="email"
                 type="email"
                 focusBorderColor="yellow.600"
                 bg="gray.900"
+                transition="0.4s"
                 placeholder="E-mail"
                 _placeholder={{
                   color: "gray.400"
@@ -58,8 +69,10 @@ export default function Home() {
                 _hover={{
                   bg: "yellow.200"
                 }}
-                size="md"
+                size="lg"
                 variant="filled"
+                error={errors.email}
+                {...register('email')}
 
               />
             <InputGroup flexDir="column">
@@ -70,12 +83,16 @@ export default function Home() {
                 focusBorderColor="yellow.600"
                 variant="filled"
                 placeholder="Enter password"
+                transition="0.4s"
                 _placeholder={{
                   color: "gray.400"
                 }}
                 _hover={{
                   bg: "yellow.200"
                 }}
+                size="lg"
+                error={errors.password}
+                {...register('password')}
               />
 
                 
@@ -89,15 +106,33 @@ export default function Home() {
 
               <Button
                  type="submit" 
-                 mt="6" 
                  bg="yellow.600"
                  colorScheme="yellow.600" 
-                 size="md"
+                 size="lg "
+                 p="3"
                  transition="0.6s"
                  _hover={{
                    bg: "yellow.700"
                  }}
-              >Sign in</Button>
+                 isLoading={formState.isSubmitting}
+              >
+                Sign in
+              </Button>
+
+              <Link
+                href="/createUser"
+                passHref
+                color="purple.400"
+                opacity="0.8"
+                align="center"
+                transition="0.3s"
+                _hover={{
+                  opacity: "1",
+                  textDecoration: "underline"
+                }}
+              >
+                 Or create your account
+              </Link>
 
             </Stack>
 
