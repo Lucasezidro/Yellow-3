@@ -289,7 +289,7 @@ export default function Profile(){
                 >
                     <Text align="center" color="yellow.300" fontSize="18" fontFamily="Poppins">Yellow-2</Text>
                     <Link 
-                        href="https://github.com/Lucasezidro/yellow-2.0" 
+                        href="https://github.com/Lucasezidro/Yellow" 
                         pos="relative"
                         left="90px"
                         top="5px"
