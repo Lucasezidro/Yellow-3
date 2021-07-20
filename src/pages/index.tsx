@@ -1,10 +1,11 @@
-import { Button, Flex, Input, InputGroup, InputRightElement, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, InputGroup, InputRightElement, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { Link } from "@chakra-ui/react";
 import { Logo } from "../components/Logo";
+import Head from "next/head";
 
 type SignInFormData = {
   email: string;
@@ -17,6 +18,7 @@ const signInFormSchema = yup.object().shape({
 })
 
 export default function Home() {
+
   const [show, setShow] = useState(false)
   const handleClick = () => setShow(!show)
 
@@ -26,6 +28,8 @@ export default function Home() {
 
   const { errors } = formState
 
+ 
+
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
 
@@ -33,13 +37,18 @@ export default function Home() {
   }
 
   return (
+
     
     <Flex 
       width="100vw" 
       height="100vh" 
       alignItems="center" 
       justifyContent="center"
-      >
+    >
+
+        <Head>
+          <title>Yellow | Home</title>
+        </Head>
 
         <Flex
           as="form" 
@@ -116,7 +125,9 @@ export default function Home() {
                  }}
                  isLoading={formState.isSubmitting}
               >
-                Sign in
+                <Link href="/dashboard" passHref>
+                  Sign in
+                </Link>
               </Button>
 
               <Link

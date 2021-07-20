@@ -11,8 +11,8 @@ export function SignInWithGithub(){
         <Button
         type="button"
         color="gray.50"
-        background="gray.900"
-        _hover={{bg: "black"}}
+        background="black"
+        _hover={{bg: "gray.900"}}
         onClick={() => signOut()}
     >
         <Icon 
@@ -34,8 +34,8 @@ export function SignInWithGithub(){
         <Button
         type="button"
         color="gray.50"
-        background="gray.900"
-        _hover={{bg: "black"}}
+        background="black"
+        _hover={{bg: "gray.900"}}
         onClick={() => signIn('github')}
     >
         <Icon 

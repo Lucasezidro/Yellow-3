@@ -1,12 +1,12 @@
-import { Button, Flex, Icon, Input, InputGroup, InputRightElement, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Input, InputGroup, InputRightElement, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Logo } from "../components/Logo";
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { FaGithub } from 'react-icons/fa'
-import { signIn, useSession } from 'next-auth/client'
 import { SignInWithGithub } from "../components/SignInWithGithub";
+import { Link } from "@chakra-ui/react";
+import Head from "next/head";
 
 type SignInFormData = {
     name: string;
@@ -42,6 +42,7 @@ export default function createUser(){
     
         console.log(values)
       }
+   
     
   
     return(
@@ -52,6 +53,10 @@ export default function createUser(){
             justifyContent="center"
         >
 
+        <Head>
+            <title>Yellow | Create User</title>
+        </Head>
+        
             <Flex
                 as="form"
                 width="100%" 
@@ -181,7 +186,9 @@ export default function createUser(){
                      }}
                      isLoading={formState.isSubmitting}
                 >
-                    Sign up
+                    <Link href="/dashboard" passHref>
+                     Sign up
+                    </Link>
                 </Button>
                 
                 <SignInWithGithub />
