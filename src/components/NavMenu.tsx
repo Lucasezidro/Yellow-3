@@ -21,7 +21,7 @@ export function NavMenu(){
                 </BreadcrumbItem>
         
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/courses" passHref color="yellow.500">Courses</BreadcrumbLink>
+                    <BreadcrumbLink href="https://github.com/Lucasezidro?tab=repositories" target="_blank" passHref color="yellow.500">Repositories</BreadcrumbLink>
                 </BreadcrumbItem>
 
 

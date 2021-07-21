@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Icon, Link, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Icon, Link, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import React from "react";
 import { FaCss3, FaHtml5, FaLinux, FaNodeJs, FaPython, FaReact, FaSass } from 'react-icons/fa'
@@ -216,7 +216,7 @@ export default function Profile(){
                     color="yellow.400"
                     fontFamily="Poppins"
                 >
-                    Projetos
+                    Projects
                 </Text>
 
                 <Box
@@ -306,6 +306,20 @@ export default function Profile(){
                     </Link>
 
                 </Box>
+
+                <Button
+                    pos="absolute"
+                    left="970px"
+                    top="350px"
+                    bg="yellow.500"
+                    color="gray.900"
+                    transition="0.6s"
+                    _hover={{bg: "yellow.600"}}
+                >
+                    <Link href="https://github.com/Lucasezidro?tab=repositories" target="_blank">
+                        More Repositories
+                    </Link>
+                </Button>
 
             </Flex>
         </Flex>
